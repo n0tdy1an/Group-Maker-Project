@@ -1,0 +1,54 @@
+
+print("How many people do you want in each group?")
+groupNumber =int(input())
+
+import random
+randompick = []
+groupNumber = []
+
+#Identifies the groups and the class list
+group1=[]
+group2=[]
+group3=[]
+group4=[]
+group5=[]
+group6=[]
+group7=[]
+group8=[]
+group9=[]
+group10=[]
+classList=["Andrew", "Dylan", "James", "Kevin", "Nick", "Tyler", "Thomas", "Christopher", "Ryan", "Chris", "Daisy", "Jennifer", "Jessica", "Hailey", "Megan", "Lauren", "Taylor", "Kayla", "Rose", "Emma"]
+
+
+while len(classList) > 0:
+   randompick == random.choice(classList)
+   if groupNumber == 1:
+      group1.append(randompick)
+   if groupNumber == 2:
+      group2.append(randompick)
+   if groupNumber == 3:
+      group3.append(randompick)
+   if groupNumber == 4:
+      group4.append(randompick)
+   if groupNumber == 5:
+      group5.append(randompick)
+   if groupNumber == 6:
+      group6.append(randompick)
+   if groupNumber == 7:
+      group7.append(randompick)
+   if groupNumber == 8:
+      group8.append(randompick)
+   if groupNumber == 9:
+      group9.append(randompick)
+   if groupNumber == 10:
+      group10.append(randompick)
+      classList.remove(randompick)
+      groupNumber = groupNumber + 1
+
+
+print("Table 1: ", group1)
+print("Group 2: ", group2)
+print("Table 3: ", group3)
+print("Table 4: ", group4)
+print("Table 5: ", group5)
+print("Table 6: ", group6)
