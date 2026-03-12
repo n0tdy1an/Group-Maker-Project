@@ -1,102 +1,286 @@
 import random
+#List of names used in the program
+nameList = ["Andrew", "Dylan", "James", "Kevin", "Nick", "Tyler", "Thomas", "Christopher", "Ryan", "Chris", "Daisy", "Jennifer", "Jessica", "Hailey", "Megan", "Lauren", "Taylor", "Kayla", "Rose", "Emma"]
+#Checks for a valid input for the number of people in each group
+while True:
+    desiredGroups = input("How many people do you want in each group? Select 2, 3, or 4: ")
+    try:
+        desiredGroups = int(desiredGroups)
+        if desiredGroups == 2 or desiredGroups == 3 or desiredGroups == 4:
+            break
+        else:
+            print("Invalid input. Please enter only 2, 3, or 4:")
+    except ValueError:
+        print("Invalid input. Please enter only 2, 3, or 4:")
+#Checks for a valid input for whether there are any exceptions to the groupings
+while True:
+    exceptions = input("Are there any exceptions? If yes, type 1. If no, type 2. ")
+    try:        
+        exceptions = int(exceptions)
+        if exceptions == 1 or exceptions == 2:
+            break
+        else:
+            print("Invalid input. Please enter only 1 or 2:")
+    except ValueError:
+        print("Invalid input. Please enter only 1 or 2:")
+#Create variables that determine whether the input for the exceptions are valid
+valid1 = False
+valid2 = False
+#Makes sure that each exception is on the name list
+if exceptions == 1:
+    while(valid1 == False):
+        exception1 = input("Who is the first student? ").strip().title()
+        if exception1 in nameList:
+            valid1 = True
+        else:
+            print('Invalid entry, please enter the name of a student.')
+   
+    while(valid2 == False):
+        exception2 = input("Who is the other exception? ").strip().title()
+        if exception2 in nameList:
+            valid2 = True
+        else:
+            print('Invalid entry, please enter the name of a student.')
+#Creates the tables based on groups of 2
+    if desiredGroups == 2:
+        g1 = []
+        g2 = []
+        g3 = []
+        g4 = []
+        g5 = []
+        g6 = []
+        g7 = []
+        g8 = []
+        g9 = [exception1]
+        g10 = [exception2]
+#Creates the tables based on groups of 3
+    if desiredGroups == 3:
+        g1 = []
+        g2 = []
+        g3 = []
+        g4 = []
+        g5 = [exception1]
+        g6 = [exception2]
+#Creates the tables based on groups of 4
+    if desiredGroups == 4:
+        g1 = []
+        g2 = []
+        g3 = []
+        g4 = [exception1]
+        g5 = [exception2]
+#Removes the exceptions from the name list so that they aren't randomly placed in the same group
+    for exc in (exception1, exception2):
+        if exc in nameList:
+            nameList.remove(exc)
 
-# List the name of students
-students = ["Andrew", "Dylan", "James", "Kevin", "Nick", "Tyler", "Thomas", "Christopher", "Ryan", "Chris", "Daisy", "Jennifer", "Jessica", "Hailey", "Megan", "Lauren", "Taylor", "Kayla", "Rose", "Emma"]
+
+    groupNumber = 1
 
 
-# Empty groups
-group1 = []
-group2 = []
-group3 = []
-group4 = []
-group5 = []
-group6 = []
-group7 = []
-group8 = []
-group9 = []
-group10 = []
+    randomPick = []
+#Randomly picks names from the list and groups them based on the previous inputs
+    while len(nameList)> 0:
+        randomPick = random.choice(nameList)
+        if desiredGroups == 2:
+            if groupNumber == 1:
+                g1.append(randomPick)
+            if groupNumber == 2:
+                g2.append(randomPick)
+            if groupNumber == 3:
+                g3.append(randomPick)
+            if groupNumber == 4:
+                g4.append(randomPick)
+            if groupNumber == 5:
+                g5.append(randomPick)
+            if groupNumber == 6:
+                g6.append(randomPick)
+            if groupNumber == 7:
+                g7.append(randomPick)
+            if groupNumber == 8:
+                g8.append(randomPick)
+            if groupNumber == 9:
+                g9.append(randomPick)
+            if groupNumber == 10:
+                g10.append(randomPick)
+            nameList.remove(randomPick)
+            groupNumber = groupNumber + 1
+            if groupNumber == 11:
+                groupNumber = 1
 
-random.shuffle(students)
 
-exclusionname1 = None
-exclusionname2 = None
+        elif desiredGroups == 3:
+            if groupNumber == 1:
+                g1.append(randomPick)
+            if groupNumber == 2:
+                g2.append(randomPick)
+            if groupNumber == 3:
+                g3.append(randomPick)
+            if groupNumber == 4:
+                g4.append(randomPick)
+            if groupNumber == 5:
+                g5.append(randomPick)
+            if groupNumber == 6:
+                g6.append(randomPick)
+            nameList.remove(randomPick)
+            groupNumber = groupNumber + 1
+            if groupNumber == 7:
+                groupNumber = 1
+   
+        elif desiredGroups == 4:
+            if groupNumber == 1:
+                g1.append(randomPick)
+            if groupNumber == 2:
+                g2.append(randomPick)
+            if groupNumber == 3:
+                g3.append(randomPick)
+            if groupNumber == 4:
+                g4.append(randomPick)
+            if groupNumber == 5:
+                g5.append(randomPick)
+            nameList.remove(randomPick)
+            groupNumber = groupNumber + 1
+            if groupNumber == 6:
+                groupNumber = 1
+#Displays the groups based on the previous inputs
+    if desiredGroups == 2:
+        print("Group 1: ", g1)
+        print("Group 2: ", g2)
+        print("Group 3: ", g3)
+        print("Group 4: ", g4)
+        print("Group 5: ", g5)
+        print("Group 6: ", g6)
+        print("Group 7: ", g7)
+        print("Group 8: ", g8)
+        print("Group 9: ", g9)
+        print("Group 10: ", g10)
 
-print(students)
 
-groupsize = int(input("Would you like groups of 2, 3, or 4?"))
-
-exclusion1 = input("Is there any pair of students that can't work together? Y / N ")
-
-# Only ask for exclusions if the user says "Y"
-if exclusion1.upper() == "Y":
-    exclusionname1 = input("Enter the first name of the first student: ")
-    exclusionname2 = input("Enter the first name of the second student: ")
-
-    exclusionname1 = exclusionname1.lower().capitalize()
-    exclusionname2 = exclusionname2.lower().capitalize()
+    if desiredGroups == 3:
+        print("Group 1: ", g1)
+        print("Group 2: ", g2)
+        print("Group 3: ", g3)
+        print("Group 4: ", g4)
+        print("Group 5: ", g5)
+        print("Group 6: ", g6)
 
 
-groupswork = False
+    if desiredGroups == 4:
+        print("Group 1: ", g1)
+        print("Group 2: ", g2)
+        print("Group 3: ", g3)
+        print("Group 4: ", g4)
+        print("Group 5: ", g5)
+#If there are no exceptions, the program is the same as before but without the exceptions
+elif exceptions == 2:
+    g1 = []
+    g2 = []
+    g3 = []
+    g4 = []
+    g5 = []
+    g6 = []
+    g7 = []
+    g8 = []
+    g9 = []
+    g10 = []
 
-# Check if groups are valid based on exclusions
-while groupswork == False:
-    random.shuffle(students)  # Shuffle the list every time to ensure randomness
 
-    # Check if any excluded pairs are in adjacent positions
-    if exclusionname1 and exclusionname2 and (students.index(exclusionname1) == students.index(exclusionname2) - 1 or students.index(exclusionname2) == students.index(exclusionname1) - 1):
-        continue  # If excluded pair is adjacent, reshuffle
+    nameList = ['Caleb', 'Charles', 'Chad', 'Chip', 'Barry', 'Ben', 'Bart', 'Harry', 'Henry', 'Hugh', 'James', 'Jerry', 'Tom', 'Ted', 'Terry', 'Kenny', 'Karp', 'Wesley', 'Christopher', 'Shaggy']
 
- 
-    groupswork = True  # If no exclusions are violated, proceed with forming groups
 
-# Print groups based on groupsize provided by the user
-if groupsize == 2:
-    group1 = [students[0], students[1]]
-    group2 = [students[2], students[3]]
-    group3 = [students[4], students[5]]
-    group4 = [students[6], students[7]]
-    group5 = [students[8], students[9]]
-    group6 = [students[10], students[11]]
-    group7 = [students[12], students[13]]
-    group8 = [students[14], students[15]]
-    group9 = [students[16], students[17]]
-    group10 = [students[18], students[19]]
-    
-    print("Group 1:", ", ".join(group1))
-    print("Group 2:", ", ".join(group2))
-    print("Group 3:", ", ".join(group3))
-    print("Group 4:", ", ".join(group4))
-    print("Group 5:", ", ".join(group5))
-    print("Group 6:", ", ".join(group6))
-    print("Group 7:", ", ".join(group7))
-    print("Group 8:", ", ".join(group8))
-    print("Group 9:", ", ".join(group9))
-    print("Group 10:", ", ".join(group10))
+    groupNumber = 1
 
-elif groupsize == 3:
-    group1 = [students[0], students[1], students[2]]
-    group2 = [students[3], students[4], students[5]]
-    group3 = [students[6], students[7], students[8]]
-    group4 = [students[9], students[10], students[11]]
-    group5 = [students[12], students[13], students[14], students[15]]
-    group6 = [students[16], students[17], students[18], students[19]]
 
-    print("Group 1:", ", ".join(group1))
-    print("Group 2:", ", ".join(group2))
-    print("Group 3:", ", ".join(group3))
-    print("Group 4:", ", ".join(group4))
-    print("Group 5:", ", ".join(group5))
-    print("Group 6:", ", ".join(group6))
+    randomPick = []
 
-elif groupsize == 4:
-    group1 = [students[0], students[1], students[2], students[3]]
-    group2 = [students[4], students[5], students[6], students[7]]
-    group3 = [students[8], students[9], students[10], students[11]]
-    group4 = [students[12], students[13], students[14], students[15]]
-    group5 = [students[16], students[17], students[18], students[19]]
 
-    print("Group 1:", ", ".join(group1))
-    print("Group 2:", ", ".join(group2))
-    print("Group 3:", ", ".join(group3))
-    print("Group 4:", ", ".join(group4))
-    print("Group 5:", ", ".join(group5))
+    while len(nameList)> 0:
+        randomPick = random.choice(nameList)
+        if desiredGroups == 2:
+            if groupNumber == 1:
+                g1.append(randomPick)
+            if groupNumber == 2:
+                g2.append(randomPick)
+            if groupNumber == 3:
+                g3.append(randomPick)
+            if groupNumber == 4:
+                g4.append(randomPick)
+            if groupNumber == 5:
+                g5.append(randomPick)
+            if groupNumber == 6:
+                g6.append(randomPick)
+            if groupNumber == 7:
+                g7.append(randomPick)
+            if groupNumber == 8:
+                g8.append(randomPick)
+            if groupNumber == 9:
+                g9.append(randomPick)
+            if groupNumber == 10:
+                g10.append(randomPick)
+            nameList.remove(randomPick)
+            groupNumber = groupNumber + 1
+            if groupNumber == 11:
+                groupNumber = 1
+
+
+        elif desiredGroups == 3:
+            if groupNumber == 1:
+                g1.append(randomPick)
+            if groupNumber == 2:
+                g2.append(randomPick)
+            if groupNumber == 3:
+                g3.append(randomPick)
+            if groupNumber == 4:
+                g4.append(randomPick)
+            if groupNumber == 5:
+                g5.append(randomPick)
+            if groupNumber == 6:
+                g6.append(randomPick)
+            nameList.remove(randomPick)
+            groupNumber = groupNumber + 1
+            if groupNumber == 7:
+                groupNumber = 1
+   
+        elif desiredGroups == 4:
+            if groupNumber == 1:
+                g1.append(randomPick)
+            if groupNumber == 2:
+                g2.append(randomPick)
+            if groupNumber == 3:
+                g3.append(randomPick)
+            if groupNumber == 4:
+                g4.append(randomPick)
+            if groupNumber == 5:
+                g5.append(randomPick)
+            nameList.remove(randomPick)
+            groupNumber = groupNumber + 1
+            if groupNumber == 6:
+                groupNumber = 1
+    if desiredGroups == 2:
+        print("Group 1: ", g1)
+        print("Group 2: ", g2)
+        print("Group 3: ", g3)
+        print("Group 4: ", g4)
+        print("Group 5: ", g5)
+        print("Group 6: ", g6)
+        print("Group 7: ", g7)
+        print("Group 8: ", g8)
+        print("Group 9: ", g9)
+        print("Group 10: ", g10)
+
+
+    if desiredGroups == 3:
+        print("Group 1: ", g1)
+        print("Group 2: ", g2)
+        print("Group 3: ", g3)
+        print("Group 4: ", g4)
+        print("Group 5: ", g5)
+        print("Group 6: ", g6)
+
+
+    if desiredGroups == 4:
+        print("Group 1: ", g1)
+        print("Group 2: ", g2)
+        print("Group 3: ", g3)
+        print("Group 4: ", g4)
+        print("Group 5: ", g5)
+
