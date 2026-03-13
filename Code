@@ -62,6 +62,7 @@ if exceptions == 1:
         g5 = [exception1]
         g6 = [exception2]
 #Creates the tables based on groups of 4
+
     if desiredGroups == 4:
         g1 = []
         g2 = []
@@ -183,16 +184,8 @@ elif exceptions == 2:
     g9 = []
     g10 = []
 
-
-    nameList = ['Caleb', 'Charles', 'Chad', 'Chip', 'Barry', 'Ben', 'Bart', 'Harry', 'Henry', 'Hugh', 'James', 'Jerry', 'Tom', 'Ted', 'Terry', 'Kenny', 'Karp', 'Wesley', 'Christopher', 'Shaggy']
-
-
     groupNumber = 1
-
-
     randomPick = []
-
-
     while len(nameList)> 0:
         randomPick = random.choice(nameList)
         if desiredGroups == 2:
